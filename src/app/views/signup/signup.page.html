@@ -1,0 +1,40 @@
+<ion-content style="text-align: center;">
+  <div class="container">
+    <ion-card>
+      <h1>Minha listas de compras</h1>
+      <h4>Cadastre-se para começar</h4>
+      <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+        <ion-list class="align-form">
+          <ion-item>
+            <ion-label position="floating">Nome</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="email" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input formControlName="pass" [type]="passwordType" clearOnEdit="false"></ion-input>
+            <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Confirmar Senha</ion-label>
+            <ion-input formControlName="validatePass" [type]="passwordType" clearOnEdit="false"></ion-input>
+            <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+            <small *ngIf="loginForm.hasError('notSame')">
+             As senhas não combinam!!
+            </small>  
+          </ion-item>
+          <ion-button *ngIf="!isLoading" type="submit" color="primary" style="margin-top: 10px; border-radius: 20px;">
+            <span style="padding: 0px 65px 0px 65px">Cadastrar</span></ion-button>
+          <p>Já possui conta? <a routerLink="/login"><b style="color:  #8c0429;">Voltar ao login</b></a></p>
+          <div style="text-align: center; padding: 0px 65px 0px 65px;margin-top: 10px;">
+            <ion-spinner *ngIf="isLoading"></ion-spinner>
+          </div>
+        </ion-list>
+      </form>
+    </ion-card>
+  </div>
+</ion-content>

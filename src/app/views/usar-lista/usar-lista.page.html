@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tela Inicial</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{listsItens ? listsItens.nome:""}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-list *ngFor="let item of itens">
+        <ion-item>
+          <ion-label style="white-space:normal;">{{item.nome}}</ion-label>
+          <ion-label>{{item.quantidade}}</ion-label>
+          <ion-checkbox slot="start" [(ngModel)]="item.isChecked" value="{{item.id}}"></ion-checkbox>
+        </ion-item>
+        <ion-item style="max-width: 50%; margin:auto; min-width: 150px;
+        max-width: 500px; padding-top: 10px;" lines="none">
+          <mat-form-field appearance="legacy" style="width: 70%;" *ngIf="item.isChecked">
+            <mat-label>Valor (unitario)</mat-label>
+            <input matInput [(ngModel)]="item.valor" placeholder="Coloque a virgula para os centavos!"
+              mask="separator.2" decimalMarker="," thousandSeparator="." (change)="showUserTotal()">
+          </mat-form-field>
+          <small color="primary"
+            *ngIf="item.isChecked">{{(item.total)? (item.total |currency:'BRL') : '0,00'}}</small>
+        </ion-item>
+      </ion-list>
+      <div class="footer">
+        <ion-button type="submit" color="primary" expand="block" (click)="onSubmit()">
+          <ion-spinner *ngIf="isLoading" class="spin" name="crescent" color="light"></ion-spinner>
+          Salvar
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab class="fab" vertical="bottom" horizontal="start" slot="fixed">
+    <div class="floating" style="background: #8c0429;">
+      <ion-label class="label-total">{{showUserTotalValue | currency:'BRL'}}</ion-label>
+    </div>
+  </ion-fab>
+</ion-content>

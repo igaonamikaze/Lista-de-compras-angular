@@ -1,0 +1,33 @@
+.footer {
+  float: right;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #8c0429 !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #8c0429 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #8c0429 !important;
+  ;
+}
+
+.label-total {
+  color: white;
+  margin: 10px;
+}
+
+.floating {
+  background: #8c0429;
+  border-radius: 12px;
+}
+
+.fab {
+  margin-right: 10px;
+}

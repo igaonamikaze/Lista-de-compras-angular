@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="text-align: center;">Editar lista <b>{{nome_lista}}</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="modal-item">
+  <div class="container" *ngIf="!isLoading">
+    <ion-grid>
+      <ion-row *ngFor="let item of Items">
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Nome</ion-label>
+            <ion-input [(ngModel)]="item.nome" value="{{item.nome}}"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Quantidade</ion-label>
+            <ion-input [(ngModel)]="item.quantidade" value="{{item.quantidade}}"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <h3 style="margin: auto;">Adicionar novo item</h3>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Nome</ion-label>
+            <ion-input [(ngModel)]="newItems.nome"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Quantidade</ion-label>
+            <ion-input [(ngModel)]="newItems.quantidade"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="modal-footer">
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="salvarEdit()">
+          <b>Salvar Lista</b>
+        </ion-button>
+        <ion-button color="primary" (click)="addNewItem()">
+          <b>Adiconar Item</b>
+        </ion-button>
+        <ion-button (click)="closeModal()" style=" color: #92949C;">
+          <b>Cancelar</b>
+        </ion-button>
+      </ion-buttons>
+    </div>
+    <ion-spinner *ngIf="isLoading"></ion-spinner>
+  </div>
+</ion-content>

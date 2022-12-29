@@ -1,0 +1,29 @@
+<ion-content style="text-align: center;">
+  <div class="container">
+    <ion-card>
+      <h1>Minha listas de compras</h1>
+      <h4>Entre para continuar</h4>
+      <form [formGroup]="loginForm" (ngSubmit)="submitForm()" (keydown)="EnterSubmit($event)" novalidate>
+        <ion-list class="align-form">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="login" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input formControlName="pass" [type]="passwordType" clearOnEdit="false"></ion-input>
+            <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+          </ion-item>
+
+          <ion-button *ngIf="!isLoading" type="submit" color="primary" style="margin-top: 10px; border-radius: 20px;">
+            <span style="padding: 0px 65px 0px 65px">Entrar</span></ion-button>
+          <p>Não possui conta? <a routerLink="/signup"><b style="color:  #8c0429;">Registre-se</b></a> para começar</p>
+          <div style="text-align: center; padding: 0px 65px 0px 65px;margin-top: 10px;">
+            <ion-spinner *ngIf="isLoading"></ion-spinner>
+          </div>
+        </ion-list>
+      </form>
+    </ion-card>
+  </div>
+</ion-content>
